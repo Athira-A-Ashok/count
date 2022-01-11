@@ -1,24 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import randomColor from "randomcolor";
 
 function App() {
+
+ const [ count, setCount] = useState(0)
+ const [color, setColor] =useState("blue")
+
+ console.log(count)
+
+
+ useEffect(() => {
+   console.log("useeffect")
+ },[count])
+
+
+ function incrementHandler(){
+   return(
+    setCount ((prevCount) => {
+      return prevCount + 1 ;
+    })
+   )
+    color();
+   setColor(randomColor());
+ }
+
+ function decrementHandler() {
+   return (
+    setCount ((prevCount) => {
+      return prevCount - 1 ;
+    })
+   )
+ } 
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div>
+      {console.log("rendering completed")}
+   <h1 style={{color:color}}>{count}</h1>
+   <button onClick={incrementHandler}>Increment</button>
+   <button onClick={decrementHandler}>Decrement</button>
+   </div>
   );
 }
 
